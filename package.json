@@ -2,7 +2,7 @@
   "name": "picast",
   "description": "",
   "author": "Stephen Whitmore <sww@eight.net>",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "bin": {
     "picast": "bin/cmd.js"
   },
