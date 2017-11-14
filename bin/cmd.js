@@ -11,6 +11,8 @@ if (argv.serve || argv.s) {
     var arg = 'http://' + req.connection.remoteAddress + ':5002' + req.url
     var ps = spawn('omxplayer', [arg])
 
+    req.pipe(ps.stdin)
+
     req.once('close', function () {
       ps.stdin.write('q')
     })
