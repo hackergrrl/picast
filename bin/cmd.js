@@ -11,11 +11,13 @@ if (argv.serve || argv.s) {
     var arg = 'http://' + req.connection.remoteAddress + ':5002' + req.url
     var ps = spawn('omxplayer', [arg])
 
-    res.once('end', function () {
-      ps.kill()
+    req.once('close', function () {
+      ps.stdin.write('q')
     })
   })
-  server.listen(5001)
+  server.listen(5001, function () {
+    console.log('running on port 5001')
+  })
 } else if (argv._[2]) {
   var ecstatic = require('ecstatic')
 
