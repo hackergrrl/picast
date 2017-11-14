@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var http = require('http')
 var spawn = require('child_process').spawn
 var argv = require('minimist')(process.argv)
