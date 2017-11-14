@@ -2,6 +2,13 @@
 
 > Play media from your computer on a Raspberry Pi hooked up to a TV.
 
+## Status
+
+Experimental. Some values are hardcoded.
+
+Happy to get this working for more folks! Post an issue or send a PR if you're
+interesting in using this as well. :wave:
+
 ## Usage
 
 ### Raspberry Pi
