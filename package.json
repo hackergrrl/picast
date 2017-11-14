@@ -1,5 +1,5 @@
 {
-  "name": "airtv",
+  "name": "picast",
   "description": "",
   "author": "Stephen Whitmore <sww@eight.net>",
   "version": "1.0.0",
@@ -7,10 +7,10 @@
     "picast": "bin/cmd.js"
   },
   "repository": {
-    "url": "git://github.com/noffle/airtv.git"
+    "url": "git://github.com/noffle/picast.git"
   },
-  "homepage": "https://github.com/noffle/airtv",
-  "bugs": "https://github.com/noffle/airtv/issues",
+  "homepage": "https://github.com/noffle/picast",
+  "bugs": "https://github.com/noffle/picast/issues",
   "main": "index.js",
   "scripts": {
     "test": "tape test/*.js",
