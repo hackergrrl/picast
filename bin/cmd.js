@@ -4,15 +4,21 @@ var http = require('http')
 var spawn = require('child_process').spawn
 var argv = require('minimist')(process.argv)
 var fs = require('fs')
-var ecstatic = require('ecstatic')
 var path = require('path')
 
 if (argv.serve || argv.s) {
   var server = http.createServer(function (req, res) {
-    var ps = spawn('omxplayer', ['http://' + req.host + ':5002' + req.url])
+    var arg = 'http://' + req.connection.remoteAddress + ':5002' + req.url
+    var ps = spawn('omxplayer', [arg])
+
+    res.once('end', function () {
+      ps.kill()
+    })
   })
   server.listen(5001)
 } else if (argv._[2]) {
+  var ecstatic = require('ecstatic')
+
   var dir = path.dirname(argv._[2])
   var server = http.createServer(ecstatic({ root: dir }))
   server.listen(5002)
