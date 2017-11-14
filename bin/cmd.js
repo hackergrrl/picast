@@ -8,18 +8,25 @@ var path = require('path')
 
 if (argv.serve || argv.s) {
   var server = http.createServer(function (req, res) {
+  console.log('incoming')
     var arg = 'http://' + req.connection.remoteAddress + ':5002' + req.url
     var ps = spawn('omxplayer', [arg])
 
-    req.pipe(ps.stdin)
+    req.on('data', function (d) {
+      ps.stdin.write(d)
+    })
 
     req.once('close', function () {
       ps.stdin.write('q')
+    })
+    ps.on('exit', function () {
+      res.end()
     })
   })
   server.listen(5001, function () {
     console.log('running on port 5001')
   })
+  server.setTimeout(1000 * 60 * 60 * 10)
 } else if (argv._[2]) {
   var ecstatic = require('ecstatic')
 
