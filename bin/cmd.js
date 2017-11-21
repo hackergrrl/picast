@@ -50,6 +50,7 @@ if (argv.serve || argv.s) {
     req.write(' ')
   }, 1000)
 
+  req.on('error', console.log)
   req.on('response', function () {
     console.log('done')
     process.stdin.setRawMode(false)
