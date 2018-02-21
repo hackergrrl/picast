@@ -1,5 +1,6 @@
 var http = require('http')
 var spawn = require('child_process').spawn
+var rimraf = require('rimraf').sync
 
 module.exports = function (port) {
   var server = http.createServer(function (req, res) {
@@ -33,6 +34,7 @@ function handleLocalMedia (req, res) {
 
 function handleYoutube (req, res) {
   var url = decodeURIComponent(req.url.substring(1))
+  rimraf('/tmp/video.mp4')
   var ytdl = spawn('youtube-dl', [url, '-f', '18', '-o', '/tmp/video.mp4'])
   ytdl.stdout.on('data', function (str) {
     str = str.toString()
