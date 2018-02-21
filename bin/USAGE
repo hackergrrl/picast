@@ -1,0 +1,16 @@
+USAGE:
+
+  picast --serve
+
+    Run a picast server. Prints its IP address and port to stdout.
+
+  picast [-h HOST] FILE
+
+    Play a local file on the pi. Optionally specify the IP address. Defaults to
+    10.0.0.32 otherwise.
+
+  picast [-h HOST] URL
+
+    Play the video at URL. This uses the external program youtube-dl to try and
+    find and play any embedded video on the website. Requires youtube-dl be
+    installed on the pi.

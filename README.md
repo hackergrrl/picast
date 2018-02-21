@@ -14,6 +14,8 @@ interesting in using this as well. :wave:
 ### Raspberry Pi
 
 ```
+$ npm install --global picast
+
 $ picast --serve
 ```
 
@@ -24,6 +26,8 @@ Make sure `omxplayer` is installed.
 On the same local network as the Pi, run
 
 ```
+$ npm install --global picast
+
 $ picast media.mp4
 ```
 
@@ -31,7 +35,9 @@ It will find the Pi and instruct it to stream the media from the local machine.
 
 You can control the `omxplayer` instance from stdin in this terminal.
 
-**NEW**: If you replace `media.mp4` above with a YouTube URL (or anything
+### Play youtube videos
+
+If you replace `media.mp4` above with a YouTube URL (or anything
 [youtube-dl](https://rg3.github.io/youtube-dl/) can play), it will stream it on
 the pi. Requires `youtube-dl` be installed on the pi.
 

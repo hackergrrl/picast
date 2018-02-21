@@ -1,6 +1,7 @@
 var http = require('http')
 var spawn = require('child_process').spawn
 var rimraf = require('rimraf').sync
+var localip = require('my-local-ip')
 
 module.exports = function (port) {
   var server = http.createServer(function (req, res) {
@@ -11,7 +12,7 @@ module.exports = function (port) {
   })
 
   server.listen(port, function () {
-    console.log('running on port', port)
+    console.log('running on', localip(), 'port', port)
   })
   server.setTimeout(1000 * 60 * 60 * 10)
 }
