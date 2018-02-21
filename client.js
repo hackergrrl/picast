@@ -7,7 +7,7 @@ var tty = require('tty')
 var request = require('request')
 var ecstatic = require('ecstatic')
 
-module.exports = function (param) {
+module.exports = function (param, opts) {
   process.stdin.setRawMode(true)
 
   var arg
@@ -20,9 +20,11 @@ module.exports = function (param) {
     arg = path.basename(param)
   }
 
+  var host = opts.host || '10.0.0.32'
+
   // TODO(noffle): use mdns to find the pi
   var req = request.post({
-    url: 'http://10.0.0.32:5001/' + arg,
+    url: 'http://' + host + ':5001/' + arg,
     timeout: 9999999
   })
   process.stdin.pipe(req)
