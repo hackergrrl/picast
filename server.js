@@ -35,7 +35,7 @@ function handleLocalMedia (req, res) {
 function handleYoutube (req, res) {
   var url = decodeURIComponent(req.url.substring(1))
   rimraf('/tmp/video.mp4')
-  var ytdl = spawn('youtube-dl', [url, '-f', '18', '-o', '/tmp/video.mp4'])
+  var ytdl = spawn('youtube-dl', [url, '-f', '18', '--no-part', '-o', '/tmp/video.mp4'])
   ytdl.stdout.on('data', function (str) {
     str = str.toString()
     if (/\[download\] Destination: \/tmp\/video.mp4/.test(str)) {
@@ -46,7 +46,7 @@ function handleYoutube (req, res) {
   })
 
   function play () {
-    var ps = spawn('omxplayer', ['/tmp/video.mp4.part'])
+    var ps = spawn('omxplayer', ['/tmp/video.mp4'])
 
     req.on('data', function (d) {
       ps.stdin.write(d)
