@@ -22,7 +22,7 @@ module.exports = function (param) {
 
   // TODO(noffle): use mdns to find the pi
   var req = request.post({
-    url: 'http://localhost:5001/' + arg,
+    url: 'http://10.0.0.32:5001/' + arg,
     timeout: 9999999
   })
   process.stdin.pipe(req)
