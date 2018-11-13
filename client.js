@@ -17,6 +17,7 @@ module.exports = function (param, opts) {
     var dir = path.dirname(param)
     var server = http.createServer(ecstatic({ root: dir }))
     server.listen(5002)
+    server.setTimeout(1000 * 60 * 60 * 10)
     arg = path.basename(param)
   }
 
