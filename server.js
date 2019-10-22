@@ -19,7 +19,8 @@ module.exports = function (port) {
 
 function handleLocalMedia (req, res) {
   var arg = 'http://' + req.connection.remoteAddress + ':5002' + req.url
-  var ps = spawn('omxplayer', [arg])
+  // TODO: unpack omxplayer args from url params
+  var ps = spawn('omxplayer', ['--timeout', '500', arg])
 
   req.on('data', function (d) {
     ps.stdin.write(d)
@@ -31,6 +32,8 @@ function handleLocalMedia (req, res) {
   ps.on('exit', function () {
     res.end()
   })
+  ps.stdout.pipe(process.stdout)
+  ps.stderr.pipe(process.stderr)
 }
 
 function handleYoutube (req, res) {
@@ -49,12 +52,13 @@ function handleYoutube (req, res) {
   function play () {
     var ps = spawn('omxplayer', ['/tmp/video.mp4'])
 
+    ps.stderr.pipe(process.stdout)
+    ps.stdout.pipe(process.stdout)
+
     req.on('data', function (d) {
       ps.stdin.write(d)
     })
 
-    ps.stderr.pipe(process.stderr)
-    ps.stdout.pipe(process.stdout)
     req.once('close', function () {
       ps.stdin.write('q')
     })
