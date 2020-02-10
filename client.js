@@ -21,7 +21,7 @@ module.exports = function (param, opts) {
     arg = path.basename(param)
   }
 
-  var host = opts.host || '10.0.0.32'
+  var host = opts.host || '192.168.1.32'
 
   // TODO(noffle): use mdns to find the pi
   var req = request.post({
