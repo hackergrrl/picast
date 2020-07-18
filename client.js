@@ -35,7 +35,11 @@ module.exports = function (param, opts) {
     req.write(' ')
   }, 1000)
 
-  req.on('error', console.log)
+  req.on('error', function (err) {
+    console.log(err)
+    process.stdin.setRawMode(false)
+    process.exit(0)
+  })
   req.on('response', function () {
     console.log('done')
     process.stdin.setRawMode(false)
